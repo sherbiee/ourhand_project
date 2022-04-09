@@ -1,16 +1,11 @@
 # ourhand_project
 
-A new Flutter project.
+for ITCS424 Wireless and Mobile Computing
 
-## Getting Started
+Member 
 
-This project is a starting point for a Flutter application.
+Jiratchaya Benyakul 6288006 
 
-A few resources to get you started if this is your first Flutter project:
+Chotikarn Chalermjirarat 6288009
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Section 1
