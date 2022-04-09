@@ -8,12 +8,12 @@ import 'package:ourhand_project/model/student.dart';
 import '../main.dart';
 import '/screen/loginscreen.dart';
 
-class FormScreen extends StatefulWidget {
+class RegisterScreen extends StatefulWidget {
   @override
-  _FormScreenState createState() => _FormScreenState();
+  _RegisterScreenState createState() => _RegisterScreenState();
 }
 
-class _FormScreenState extends State<FormScreen> {
+class _RegisterScreenState extends State<RegisterScreen> {
   final formKey = GlobalKey<
       FormState>(); // for checking the status of the form e.g. reset form/ save form
   Student myUser = Student();

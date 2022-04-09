@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:ourhand_project/model/student.dart';
-import 'package:ourhand_project/screen/realusingscreen.dart';
+import 'package:ourhand_project/screen/homepage.dart';
 import '../main.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -115,7 +115,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                         ?.reset(); // login successful so clear form
                                     Navigator.pushReplacement(context,
                                         MaterialPageRoute(builder: (context) {
-                                      return RealUsingScreen();
+                                      return Homepage();
                                     }));
                                   });
                                 } on FirebaseAuthException catch (e) {

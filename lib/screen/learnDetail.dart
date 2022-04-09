@@ -1,30 +1,26 @@
 import 'package:flutter/material.dart';
-import 'overview.dart';
+import 'learnInfo.dart';
 
-class RecipeDetail extends StatefulWidget {
-  final Recipe recipe;
+class LearnDetail extends StatefulWidget {
+  final LearnInfo learn;
 
-  const RecipeDetail({
+  const LearnDetail({
     Key? key,
-    required this.recipe,
+    required this.learn,
   }) : super(key: key);
 
   @override
-  _RecipeDetailState createState() {
-    return _RecipeDetailState();
+  _LearnDetailState createState() {
+    return _LearnDetailState();
   }
 }
 
-
-
-class _RecipeDetailState extends State<RecipeDetail> {
- 
-
+class _LearnDetailState extends State<LearnDetail> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.recipe.label),
+        title: Text(widget.learn.label),
       ),
       body: SafeArea(
         child: Column(
@@ -33,30 +29,27 @@ class _RecipeDetailState extends State<RecipeDetail> {
               height: 300,
               width: double.infinity,
               child: Image(
-                image: AssetImage(widget.recipe.imageUrl),
+                image: AssetImage(widget.learn.imageUrl),
               ),
             ),
             const SizedBox(
               height: 4,
             ),
             Text(
-              widget.recipe.label,
+              widget.learn.label,
               style: const TextStyle(fontSize: 18),
             ),
             Expanded(
               child: ListView.builder(
                 padding: const EdgeInsets.all(7.0),
-                itemCount: widget.recipe.ingredients.length,
+                itemCount: widget.learn.infos.length,
                 itemBuilder: (BuildContext context, int index) {
-                  final ingredient = widget.recipe.ingredients[index];
+                  final info = widget.learn.infos[index];
                   return Text(
-                      ' ${ingredient.name}');
+                      ' ${info.name}');
                 },
               ),
             ),
-
-
-            
           ],
         ),
       ),

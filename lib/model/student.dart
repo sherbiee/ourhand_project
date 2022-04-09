@@ -4,6 +4,4 @@ class Student{
   String? password;
 
   Student({this.username, this.email, this.password});  
-
-
 }

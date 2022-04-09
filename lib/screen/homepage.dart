@@ -3,17 +3,17 @@ import 'package:flutter/material.dart';
 import 'package:ourhand_project/screen/loginscreen.dart';
 import '../main.dart';
 
-import 'overview.dart';
-import 'detail_obj.dart';
+import 'homeInfo.dart';
+import 'homeDetail.dart';
 import 'learn.dart';
 
-class RealUsingScreen extends StatefulWidget {
-  const RealUsingScreen({Key? key}) : super(key: key);
+class Homepage extends StatefulWidget {
+  const Homepage({Key? key}) : super(key: key);
   @override
-  State<RealUsingScreen> createState() => _RealUsingScreenState();
+  State<Homepage> createState() => _HomepageState();
 }
 
-class _RealUsingScreenState extends State<RealUsingScreen> {
+class _HomepageState extends State<Homepage> {
   final auth = FirebaseAuth.instance;
   @override
   Widget build(BuildContext context) {
@@ -56,7 +56,7 @@ class _RealUsingScreenState extends State<RealUsingScreen> {
     return Scaffold(
       body: SafeArea(
         child: ListView.builder(
-          itemCount: Recipe.samples.length,
+          itemCount: HomeInfo.samples.length,
           itemBuilder: (BuildContext context, int index) {
             return GestureDetector(
               onTap: () {
@@ -64,23 +64,21 @@ class _RealUsingScreenState extends State<RealUsingScreen> {
                   context,
                   MaterialPageRoute(
                     builder: (context) {
-                      //return RecipeDetail(recipe: Recipe.samples[index]);
                       return Learn();
                     },
                   ),
                 );
               },
-              child: buildRecipeCard(Recipe.samples[index]),
+              child: buildRecipeCard(HomeInfo.samples[index]),
             );
-
-            return buildRecipeCard(Recipe.samples[index]);
+            return buildRecipeCard(HomeInfo.samples[index]);
           },
         ),
       ),
     );
   }
 
-  Widget buildRecipeCard(Recipe recipe) {
+  Widget buildRecipeCard(HomeInfo recipe) {
     return Card(
       elevation: 2.0,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 
 import '/screen/loginscreen.dart';
-import 'screen/formscreen.dart';
+import 'screen/register.dart';
 //import 'model/student.dart';
 //import 'firebase_options.dart';
 
@@ -43,23 +43,20 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Palette.pink,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MainPage(title: 'Flutter Demo Home Page'),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, required this.title}) : super(key: key);
+class MainPage extends StatefulWidget {
+  const MainPage({Key? key, required this.title}) : super(key: key);
   final String title;
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
-
-  //@override
-  //State<RealUsingScreen> createState() => _RealUsingScreenState(); //
+  State<MainPage> createState() => _MainPageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -73,16 +70,12 @@ class _MyHomePageState extends State<MyHomePage> {
             height: 300.0,
             fit: BoxFit.cover,
           ),
-          /*Text(
-            "ourhand - sign language",
-            style: TextStyle(fontSize: 20, color: Color.fromARGB(255, 115, 27, 57)),
-          ),*/
           ElevatedButton(
               child: Text("Register", style: TextStyle(fontSize: 20)),
               onPressed: () {
                 Navigator.pushReplacement(context,
                     MaterialPageRoute(builder: (context) {
-                  return FormScreen();
+                  return RegisterScreen();
                 }));
               }),
           ElevatedButton(
