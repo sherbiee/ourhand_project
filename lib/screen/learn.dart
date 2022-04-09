@@ -5,54 +5,17 @@ import '../main.dart';
 
 import 'overview.dart';
 import 'detail_obj.dart';
-import 'learn.dart';
 
-class RealUsingScreen extends StatefulWidget {
-  const RealUsingScreen({Key? key}) : super(key: key);
+class Learn extends StatefulWidget {
+  const Learn({Key? key}) : super(key: key);
   @override
-  State<RealUsingScreen> createState() => _RealUsingScreenState();
+  State<Learn> createState() => _LearnState();
 }
 
-class _RealUsingScreenState extends State<RealUsingScreen> {
+class _LearnState extends State<Learn> {
   final auth = FirebaseAuth.instance;
   @override
   Widget build(BuildContext context) {
-    /*
-    return Scaffold(
-      body: Center(
-        child: Column(
-          children: [
-            new Image.asset(
-              'image/1.jpeg',
-              width: 200.0,
-              height: 200.0,
-              fit: BoxFit.cover,
-            ),
-            Text("Learning"),
-            new Image.asset(
-              'image/2.jpeg',
-              width: 200.0,
-              height: 200.0,
-              fit: BoxFit.cover,
-            ),
-            Text("Quiz"),
-            Text(auth.currentUser!.email!),
-            ElevatedButton(
-                child: Text("Sign out"),
-                onPressed: () {
-                  auth.signOut().then((value) {
-                    Navigator.pushReplacement(context,
-                        MaterialPageRoute(builder: (context) {
-                      return MyApp();
-                    }));
-                  });
-                })
-          ],
-        ),
-      ),
-    );
-    */
-
     return Scaffold(
       body: SafeArea(
         child: ListView.builder(
@@ -64,8 +27,7 @@ class _RealUsingScreenState extends State<RealUsingScreen> {
                   context,
                   MaterialPageRoute(
                     builder: (context) {
-                      //return RecipeDetail(recipe: Recipe.samples[index]);
-                      return Learn();
+                      return RecipeDetail(recipe: Recipe.samples[index]);
                     },
                   ),
                 );
@@ -88,7 +50,7 @@ class _RealUsingScreenState extends State<RealUsingScreen> {
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: <Widget>[
-            Image(image: AssetImage(recipe.imageUrl)),
+            //Image(image: AssetImage(recipe.imageUrl)),
             const SizedBox(
               height: 14.0,
             ),

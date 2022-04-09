@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 
@@ -16,6 +14,25 @@ void main() async {
   runApp(const MyApp());
 }
 
+//palette.dart
+class Palette {
+  static const MaterialColor pink = const MaterialColor(
+    0xFFF8BBD0, // 0% comes in here, this will be color picked if no shade is selected when defining a Color property which doesn’t require a swatch.
+    const <int, Color>{
+      50: Color(0xFFFCE4EC),
+      100: Color(0xFFF8BBD0),
+      200: Color(0xFFF48FB1),
+      300: Color(0xFFF06292),
+      400: Color(0xFFEFCDD2),
+      500: Color(0xFFCE93D8),
+      600: Color(0xFFD81B60),
+      700: Color(0xFFC2185B),
+      800: Color(0xFFAD1457),
+      900: Color(0xFF880E4F),
+    },
+  );
+}
+
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
   // This widget is the root of your application.
@@ -24,10 +41,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Palette.pink,
       ),
       home: const MyHomePage(title: 'Flutter Demo Home Page'),
-
     );
   }
 }
@@ -40,32 +56,45 @@ class MyHomePage extends StatefulWidget {
   State<MyHomePage> createState() => _MyHomePageState();
 
   //@override
-  //State<RealUsingScreen> createState() => _RealUsingScreenState(); // 
+  //State<RealUsingScreen> createState() => _RealUsingScreenState(); //
 }
 
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-      length: 2,
-      child: Scaffold(
-          body: TabBarView(
-            children: [
-              FormScreen(), //หน้าแรกกกกกกกกกกก Register
-              LoginScreen() //ตอนนี้คิดว่า หน้านี้เป็น Login แล้วก็ทำไฟล์ข้างในให้คล้ายๆ Register นั่นแหละ แค่มันต้องมีการ ดึงข้อมูลจาก DB ออกมา Authen
-            ],
+    return Scaffold(
+      body: Center(
+          child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          new Image.asset(
+            'image/icon2.png',
+            width: 300.0,
+            height: 300.0,
+            fit: BoxFit.cover,
           ),
-          backgroundColor: Colors.green,
-          bottomNavigationBar: TabBar(
-            tabs: [
-              Tab(
-                text: "Register",
-              ),
-              Tab(
-                text: "Login",
-              )
-            ],
-          )),
+          /*Text(
+            "ourhand - sign language",
+            style: TextStyle(fontSize: 20, color: Color.fromARGB(255, 115, 27, 57)),
+          ),*/
+          ElevatedButton(
+              child: Text("Register", style: TextStyle(fontSize: 20)),
+              onPressed: () {
+                Navigator.pushReplacement(context,
+                    MaterialPageRoute(builder: (context) {
+                  return FormScreen();
+                }));
+              }),
+          ElevatedButton(
+              child: Text("Login", style: TextStyle(fontSize: 20)),
+              onPressed: () {
+                Navigator.pushReplacement(context,
+                    MaterialPageRoute(builder: (context) {
+                  return LoginScreen();
+                }));
+              })
+        ],
+      )),
     );
   }
 }

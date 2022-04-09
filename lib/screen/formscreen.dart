@@ -5,7 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:ourhand_project/model/student.dart';
-
+import '../main.dart';
+import '/screen/loginscreen.dart';
 
 class FormScreen extends StatefulWidget {
   @override
@@ -44,7 +45,7 @@ class _FormScreenState extends State<FormScreen> {
             // can connect to firebase
             return Scaffold(
               appBar: AppBar(
-                title: Text("Register to OurHand application"),
+                title: Text("Register"),
               ),
               body: Container(
                 padding: EdgeInsets.all(20),
@@ -103,7 +104,7 @@ class _FormScreenState extends State<FormScreen> {
                         SizedBox(
                           child: ElevatedButton(
                             child: Text(
-                              "Register now",
+                              "submit",
                               style: TextStyle(fontSize: 20),
                             ),
                             onPressed: () async {
@@ -126,28 +127,43 @@ class _FormScreenState extends State<FormScreen> {
                                   await FirebaseAuth.instance
                                       .createUserWithEmailAndPassword(
                                           email: myUser.email!,
-                                          password: myUser.password!
-                                  ).then((value)           // if user successfully create account do this
-                                    {
-                                      formKey.currentState?.reset();  // regist successful so clear form
-                                      Fluttertoast.showToast(         // show error box to user
+                                          password: myUser.password!)
+                                      .then(
+                                          (value) // if user successfully create account do this
+                                          {
+                                    formKey.currentState
+                                        ?.reset(); // regist successful so clear form
+                                    Fluttertoast.showToast(
+                                        // show error box to user
                                         msg: "Successful !",
-                                        gravity: ToastGravity.CENTER
-                                      );                                          
-                                    }
-                                  ); 
+                                        gravity: ToastGravity.CENTER);
+                                    Navigator.pushReplacement(context,
+                                        MaterialPageRoute(builder: (context) {
+                                      return LoginScreen();
+                                    }));
+                                  });
                                 } on FirebaseAuthException catch (e) {
-                                  print(e.code);                    // show error info. topic to dev.
-                                  print(e.message);                 // show how to do with error todev.
-                                  Fluttertoast.showToast(            // show error box to user
-                                    msg: e.message!,
-                                    gravity: ToastGravity.CENTER
-                                  );
+                                  print(
+                                      e.code); // show error info. topic to dev.
+                                  print(e
+                                      .message); // show how to do with error todev.
+                                  Fluttertoast.showToast(
+                                      // show error box to user
+                                      msg: e.message!,
+                                      gravity: ToastGravity.CENTER);
                                 }
                               }
                             },
                           ),
                         ),
+                        ElevatedButton(
+                            child: Icon(Icons.arrow_circle_left_rounded),
+                            onPressed: () {
+                              Navigator.pushReplacement(context,
+                                  MaterialPageRoute(builder: (context) {
+                                return MyApp();
+                              }));
+                            }),
                       ],
                     ),
                   ),

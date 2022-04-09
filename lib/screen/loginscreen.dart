@@ -6,7 +6,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:ourhand_project/model/student.dart';
 import 'package:ourhand_project/screen/realusingscreen.dart';
-
+import '../main.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -16,11 +16,11 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  final formKey = GlobalKey<FormState>(); // for checking the status of the form e.g. reset form/ save form
+  final formKey = GlobalKey<
+      FormState>(); // for checking the status of the form e.g. reset form/ save form
   Student myUser = Student();
-  final Future<FirebaseApp> firebase = Firebase.initializeApp(); // prepare firebase, it's an Obj. firebase
-
-
+  final Future<FirebaseApp> firebase =
+      Firebase.initializeApp(); // prepare firebase, it's an Obj. firebase
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +44,7 @@ class _LoginScreenState extends State<LoginScreen> {
             // can connect to firebase
             return Scaffold(
               appBar: AppBar(
-                title: Text("Login to OurHand application"),
+                title: Text("Login", textAlign: TextAlign.center,),
               ),
               body: Container(
                 padding: EdgeInsets.all(20),
@@ -54,8 +54,12 @@ class _LoginScreenState extends State<LoginScreen> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text("E-mail",style: TextStyle(fontSize: 20),),
-                        TextFormField(validator: MultiValidator([
+                        Text(
+                          "E-mail",
+                          style: TextStyle(fontSize: 20),
+                        ),
+                        TextFormField(
+                          validator: MultiValidator([
                             // for using many validators
                             EmailValidator(
                                 errorText:
@@ -84,40 +88,58 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                         SizedBox(
                           child: ElevatedButton(
-                            child: Text("Login now",style: TextStyle(fontSize: 20),),
+                            child: Text(
+                              "submit",
+                              style: TextStyle(fontSize: 20),
+                            ),
                             onPressed: () async {
-                              if (formKey.currentState!.validate()) // use all validation before saving 
+                              if (formKey.currentState!
+                                  .validate()) // use all validation before saving
                               {
-                                formKey.currentState?.save(); // use all onSaved function which are located in textformfield
-                                print("Name = ${myUser.username}"); // print to check the data
+                                formKey.currentState
+                                    ?.save(); // use all onSaved function which are located in textformfield
+                                print(
+                                    "Name = ${myUser.username}"); // print to check the data
                                 print("E-mail = ${myUser.email}");
                                 print("Password = ${myUser.password}");
-                              
+
                                 // below this line is to create an account
                                 try {
-                                  await FirebaseAuth.instance.signInWithEmailAndPassword(
-                                    email: myUser.email!, 
-                                    password: myUser.password!)
-                                    .then((value){               // if user login successful then do this
-                                        formKey.currentState?.reset();  // login successful so clear form
-                                        Navigator.pushReplacement(context,
-                                        MaterialPageRoute(builder: (context){
-                                            return RealUsingScreen();
-                                        }));
-                                    });
-
+                                  await FirebaseAuth.instance
+                                      .signInWithEmailAndPassword(
+                                          email: myUser.email!,
+                                          password: myUser.password!)
+                                      .then((value) {
+                                    // if user login successful then do this
+                                    formKey.currentState
+                                        ?.reset(); // login successful so clear form
+                                    Navigator.pushReplacement(context,
+                                        MaterialPageRoute(builder: (context) {
+                                      return RealUsingScreen();
+                                    }));
+                                  });
                                 } on FirebaseAuthException catch (e) {
-                                  print(e.code);                    // show error info. topic to dev.
-                                  print(e.message);                 // show how to do with error todev.
-                                  Fluttertoast.showToast(            // show error box to user
-                                    msg: e.message!,
-                                    gravity: ToastGravity.CENTER
-                                  );
+                                  print(
+                                      e.code); // show error info. topic to dev.
+                                  print(e
+                                      .message); // show how to do with error todev.
+                                  Fluttertoast.showToast(
+                                      // show error box to user
+                                      msg: e.message!,
+                                      gravity: ToastGravity.CENTER);
                                 }
                               }
                             },
                           ),
                         ),
+                        ElevatedButton(
+                            child: Icon(Icons.arrow_circle_left_rounded),
+                            onPressed: () {
+                              Navigator.pushReplacement(context,
+                                  MaterialPageRoute(builder: (context) {
+                                return MyApp();
+                              }));
+                            })
                       ],
                     ),
                   ),
