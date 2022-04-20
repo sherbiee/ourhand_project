@@ -16,10 +16,10 @@ void main() async {
 
 //palette.dart
 class Palette {
-  static const MaterialColor pink = const MaterialColor(
-    0xFFF8BBD0, // 0% comes in here, this will be color picked if no shade is selected when defining a Color property which doesn’t require a swatch.
+  static const MaterialColor colour = const MaterialColor(
+    0xFFF8BBD0,// 0% comes in here, this will be color picked if no shade is selected when defining a Color property which doesn’t require a swatch.
     const <int, Color>{
-      50: Color(0xFFFCE4EC),
+      50: Color(0xFFFFFDE7),
       100: Color(0xFFF8BBD0),
       200: Color(0xFFF48FB1),
       300: Color(0xFFF06292),
@@ -41,7 +41,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Palette.pink,
+        primarySwatch: Palette.colour,  
       ),
       home: const MainPage(title: 'Flutter Demo Home Page'),
     );
@@ -60,6 +60,7 @@ class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Palette.colour.shade50,
       body: Center(
           child: Column(
         mainAxisAlignment: MainAxisAlignment.center,

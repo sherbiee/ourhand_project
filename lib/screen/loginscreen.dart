@@ -43,6 +43,7 @@ class _LoginScreenState extends State<LoginScreen> {
           if (snapshot.connectionState == ConnectionState.done) {
             // can connect to firebase
             return Scaffold(
+              backgroundColor: Palette.colour.shade50,
               appBar: AppBar(
                 title: Text("Login", textAlign: TextAlign.center,),
               ),

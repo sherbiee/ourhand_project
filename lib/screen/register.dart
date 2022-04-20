@@ -44,6 +44,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
           if (snapshot.connectionState == ConnectionState.done) {
             // can connect to firebase
             return Scaffold(
+              backgroundColor: Palette.colour.shade50,
               appBar: AppBar(
                 title: Text("Register"),
               ),

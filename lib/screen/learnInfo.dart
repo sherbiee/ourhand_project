@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:ourhand_project/screen/homeInfo.dart';
 
 class LearnInfo {
@@ -16,6 +17,7 @@ class LearnInfo {
     LearnInfo(
       'Hello',
       'image/hello.jpg',
+      //'https://firebasestorage.googleapis.com/v0/b/ourhand-4ace1.appspot.com/o/hello.jpg?alt=media&token=858772bf-71a9-48f2-9d5d-bd2ff51f2d50',
       [
         Info('To greet someone with a hello, make the sign by extending your fingers and crossing your thumb in front of your palm. Now take the hand, starting with your hand in front of your ear, and extend it outward and away from your body.'
       'Finally, smile! Emotional signs like hello are learned as much from your body language as from the actual signs.',)

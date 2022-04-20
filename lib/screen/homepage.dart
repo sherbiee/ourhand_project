@@ -54,6 +54,7 @@ class _HomepageState extends State<Homepage> {
     */
 
     return Scaffold(
+      backgroundColor: Palette.colour.shade50,
       body: SafeArea(
         child: ListView.builder(
           itemCount: HomeInfo.samples.length,
@@ -80,6 +81,7 @@ class _HomepageState extends State<Homepage> {
 
   Widget buildRecipeCard(HomeInfo recipe) {
     return Card(
+      color: Palette.colour,
       elevation: 2.0,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
       child: Padding(

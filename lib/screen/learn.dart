@@ -18,6 +18,7 @@ class _LearnState extends State<Learn> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Palette.colour.shade50,
       body: SafeArea(
         child: ListView.builder(
           itemCount: LearnInfo.samples.length,
@@ -45,6 +46,7 @@ class _LearnState extends State<Learn> {
 
   Widget buildLearnCard(LearnInfo learn) {
     return Card(
+      color: Palette.colour,
       elevation: 2.0,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
       child: Padding(
