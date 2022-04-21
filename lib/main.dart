@@ -3,8 +3,6 @@ import 'package:firebase_core/firebase_core.dart';
 
 import '/screen/loginscreen.dart';
 import 'screen/register.dart';
-//import 'model/student.dart';
-//import 'firebase_options.dart';
 
 void main() async {
   //initilization of Firebase app
@@ -17,31 +15,30 @@ void main() async {
 //palette.dart
 class Palette {
   static const MaterialColor colour = const MaterialColor(
-    0xFFF8BBD0,// 0% comes in here, this will be color picked if no shade is selected when defining a Color property which doesn’t require a swatch.
+    0xFFF8BBD0,
     const <int, Color>{
       50: Color(0xFFFFFDE7),
       100: Color(0xFFF8BBD0),
       200: Color(0xFFF48FB1),
-      300: Color(0xFFF06292),
+      300: Color(0xFFB2EBF2),
       400: Color(0xFFEFCDD2),
-      500: Color(0xFFCE93D8),
-      600: Color(0xFFD81B60),
-      700: Color(0xFFC2185B),
-      800: Color(0xFFAD1457),
-      900: Color(0xFF880E4F),
+      500: Color(0xFFB39DDB),
+      600: Color(0xFFD32F2F),
+      700: Color(0xFFC62828),
+      800: Color(0xFFB71C1C),
+      900: Color(0xFFFFFFFF),
     },
   );
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Palette.colour,  
+        primarySwatch: Palette.colour,
       ),
       home: const MainPage(title: 'Flutter Demo Home Page'),
     );
@@ -65,28 +62,38 @@ class _MainPageState extends State<MainPage> {
           child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          new Image.asset(
+          Image.asset(
             'image/icon2.png',
             width: 300.0,
             height: 300.0,
             fit: BoxFit.cover,
           ),
-          ElevatedButton(
-              child: Text("Register", style: TextStyle(fontSize: 20)),
-              onPressed: () {
-                Navigator.pushReplacement(context,
-                    MaterialPageRoute(builder: (context) {
-                  return RegisterScreen();
-                }));
-              }),
-          ElevatedButton(
-              child: Text("Login", style: TextStyle(fontSize: 20)),
-              onPressed: () {
-                Navigator.pushReplacement(context,
-                    MaterialPageRoute(builder: (context) {
-                  return LoginScreen();
-                }));
-              })
+          SizedBox(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ElevatedButton(
+                    child: Text("Register", style: TextStyle(fontSize: 20)),
+                    onPressed: () {
+                      Navigator.pushReplacement(context,
+                          MaterialPageRoute(builder: (context) {
+                        return RegisterScreen();
+                      }));
+                    }),
+                    
+                Padding(padding: EdgeInsets.all(10.0)),
+
+                ElevatedButton(
+                    child: Text("Login", style: TextStyle(fontSize: 20)),
+                    onPressed: () {
+                      Navigator.pushReplacement(context,
+                          MaterialPageRoute(builder: (context) {
+                        return LoginScreen();
+                      }));
+                    })
+              ],
+            ),
+          ),
         ],
       )),
     );

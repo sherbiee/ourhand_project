@@ -34,7 +34,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
             // can't connect to firebase
             return Scaffold(
               appBar: AppBar(
-                title: Text("Error"),
+                title: Text(
+                  "Error",
+                  style: TextStyle(fontSize: 20),
+                ),
               ),
               body: Center(
                 child: Text("${snapshot.error}"), // show error info.
@@ -46,7 +49,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
             return Scaffold(
               backgroundColor: Palette.colour.shade50,
               appBar: AppBar(
-                title: Text("Register"),
+                title: Text(
+                  "Register",
+                  style: TextStyle(
+                    fontSize: 25,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
               ),
               body: Container(
                 padding: EdgeInsets.all(20),
@@ -102,69 +111,79 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             myUser.password = password;
                           },
                         ),
+
+                        //button
                         SizedBox(
-                          child: ElevatedButton(
-                            child: Text(
-                              "submit",
-                              style: TextStyle(fontSize: 20),
-                            ),
-                            onPressed: () async {
-                              if (formKey.currentState!.validate()) {
-                                // use validation before saving
-                                formKey.currentState
-                                    ?.save(); // use all onSaved function which are located in textformfield
-                                print(
-                                    "Name = ${myUser.username}"); // print to check the data
-                                print("E-mail = ${myUser.email}");
-                                print("Password = ${myUser.password}");
-                                // below this line is to add data into firestore
-                                await _userCollection.add({
-                                  "username": myUser.username,
-                                  "email": myUser.email,
-                                  "password": myUser.password
-                                });
-                                // below this line is to create an account
-                                try {
-                                  await FirebaseAuth.instance
-                                      .createUserWithEmailAndPassword(
-                                          email: myUser.email!,
-                                          password: myUser.password!)
-                                      .then(
-                                          (value) // if user successfully create account do this
-                                          {
-                                    formKey.currentState
-                                        ?.reset(); // regist successful so clear form
-                                    Fluttertoast.showToast(
-                                        // show error box to user
-                                        msg: "Successful !",
-                                        gravity: ToastGravity.CENTER);
+                          child: Row(
+                            children: [
+                              ElevatedButton(
+                                  child: Icon(Icons.arrow_circle_left_rounded),
+                                  onPressed: () {
                                     Navigator.pushReplacement(context,
                                         MaterialPageRoute(builder: (context) {
-                                      return LoginScreen();
+                                      return MyApp();
                                     }));
-                                  });
-                                } on FirebaseAuthException catch (e) {
-                                  print(
-                                      e.code); // show error info. topic to dev.
-                                  print(e
-                                      .message); // show how to do with error todev.
-                                  Fluttertoast.showToast(
-                                      // show error box to user
-                                      msg: e.message!,
-                                      gravity: ToastGravity.CENTER);
-                                }
-                              }
-                            },
+                                  }),
+
+                              Padding(padding: EdgeInsets.only(left: 180, top:60)),
+
+                              ElevatedButton(
+                                child: Text(
+                                  "register",
+                                  style: TextStyle(fontSize: 18),
+                                ),
+                                onPressed: () async {
+                                  if (formKey.currentState!.validate()) {
+                                    // use validation before saving
+                                    formKey.currentState
+                                        ?.save(); // use all onSaved function which are located in textformfield
+                                    print(
+                                        "Name = ${myUser.username}"); // print to check the data
+                                    print("E-mail = ${myUser.email}");
+                                    print("Password = ${myUser.password}");
+                                    // below this line is to add data into firestore
+                                    await _userCollection.add({
+                                      "username": myUser.username,
+                                      "email": myUser.email,
+                                      "password": myUser.password
+                                    });
+                                    // below this line is to create an account
+                                    try {
+                                      await FirebaseAuth.instance
+                                          .createUserWithEmailAndPassword(
+                                              email: myUser.email!,
+                                              password: myUser.password!)
+                                          .then(
+                                              (value) // if user successfully create account do this
+                                              {
+                                        formKey.currentState
+                                            ?.reset(); // regist successful so clear form
+                                        Fluttertoast.showToast(
+                                            // show error box to user
+                                            msg: "Successful !",
+                                            gravity: ToastGravity.CENTER);
+                                        Navigator.pushReplacement(context,
+                                            MaterialPageRoute(
+                                                builder: (context) {
+                                          return LoginScreen();
+                                        }));
+                                      });
+                                    } on FirebaseAuthException catch (e) {
+                                      print(e
+                                          .code); // show error info. topic to dev.
+                                      print(e
+                                          .message); // show how to do with error todev.
+                                      Fluttertoast.showToast(
+                                          // show error box to user
+                                          msg: e.message!,
+                                          gravity: ToastGravity.CENTER);
+                                    }
+                                  }
+                                },
+                              ),
+                            ],
                           ),
                         ),
-                        ElevatedButton(
-                            child: Icon(Icons.arrow_circle_left_rounded),
-                            onPressed: () {
-                              Navigator.pushReplacement(context,
-                                  MaterialPageRoute(builder: (context) {
-                                return MyApp();
-                              }));
-                            }),
                       ],
                     ),
                   ),

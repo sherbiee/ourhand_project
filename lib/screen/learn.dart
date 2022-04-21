@@ -1,11 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:ourhand_project/screen/loginscreen.dart';
 import '../main.dart';
 
 import 'learnDetail.dart';
-import 'learnInfo.dart';
-import 'homepage.dart';
+
 
 class Learn extends StatefulWidget {
   const Learn({Key? key}) : super(key: key);
@@ -18,6 +16,10 @@ class _LearnState extends State<Learn> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text("Learning Part"),
+        backgroundColor: Palette.colour.shade50,
+      ),
       backgroundColor: Palette.colour.shade50,
       body: SafeArea(
         child: ListView.builder(
@@ -36,8 +38,6 @@ class _LearnState extends State<Learn> {
               },
               child: buildLearnCard(LearnInfo.samples[index]),
             );
-
-            return buildLearnCard(LearnInfo.samples[index]);
           },
         ),
       ),

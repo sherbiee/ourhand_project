@@ -45,8 +45,13 @@ class _LoginScreenState extends State<LoginScreen> {
             return Scaffold(
               backgroundColor: Palette.colour.shade50,
               appBar: AppBar(
-                title: Text("Login", textAlign: TextAlign.center,),
-              ),
+                  title: Text(
+                "Login",
+                style: TextStyle(
+                  fontSize: 25,
+                  fontWeight: FontWeight.w700,
+                ),
+              )),
               body: Container(
                 padding: EdgeInsets.all(20),
                 child: Form(
@@ -87,60 +92,70 @@ class _LoginScreenState extends State<LoginScreen> {
                             myUser.password = password;
                           },
                         ),
-                        SizedBox(
-                          child: ElevatedButton(
-                            child: Text(
-                              "submit",
-                              style: TextStyle(fontSize: 20),
-                            ),
-                            onPressed: () async {
-                              if (formKey.currentState!
-                                  .validate()) // use all validation before saving
-                              {
-                                formKey.currentState
-                                    ?.save(); // use all onSaved function which are located in textformfield
-                                print(
-                                    "Name = ${myUser.username}"); // print to check the data
-                                print("E-mail = ${myUser.email}");
-                                print("Password = ${myUser.password}");
 
-                                // below this line is to create an account
-                                try {
-                                  await FirebaseAuth.instance
-                                      .signInWithEmailAndPassword(
-                                          email: myUser.email!,
-                                          password: myUser.password!)
-                                      .then((value) {
-                                    // if user login successful then do this
-                                    formKey.currentState
-                                        ?.reset(); // login successful so clear form
+                        //button
+                        SizedBox(
+                          child: Row(
+                            children: [
+                              ElevatedButton(
+                                  child: Icon(Icons.arrow_circle_left_rounded),
+                                  onPressed: () {
                                     Navigator.pushReplacement(context,
                                         MaterialPageRoute(builder: (context) {
-                                      return Homepage();
+                                      return MyApp();
                                     }));
-                                  });
-                                } on FirebaseAuthException catch (e) {
-                                  print(
-                                      e.code); // show error info. topic to dev.
-                                  print(e
-                                      .message); // show how to do with error todev.
-                                  Fluttertoast.showToast(
-                                      // show error box to user
-                                      msg: e.message!,
-                                      gravity: ToastGravity.CENTER);
-                                }
-                              }
-                            },
+                                  }),
+                                  
+                              Padding(padding: EdgeInsets.only(left: 200, top:60)),
+                              
+                              ElevatedButton(
+                                child: Text(
+                                  "login",
+                                  style: TextStyle(fontSize: 18),
+                                ),
+                                onPressed: () async {
+                                  if (formKey.currentState!
+                                      .validate()) // use all validation before saving
+                                  {
+                                    formKey.currentState
+                                        ?.save(); // use all onSaved function which are located in textformfield
+                                    print(
+                                        "Name = ${myUser.username}"); // print to check the data
+                                    print("E-mail = ${myUser.email}");
+                                    print("Password = ${myUser.password}");
+
+                                    // below this line is to create an account
+                                    try {
+                                      await FirebaseAuth.instance
+                                          .signInWithEmailAndPassword(
+                                              email: myUser.email!,
+                                              password: myUser.password!)
+                                          .then((value) {
+                                        // if user login successful then do this
+                                        formKey.currentState
+                                            ?.reset(); // login successful so clear form
+                                        Navigator.pushReplacement(context,
+                                            MaterialPageRoute(
+                                                builder: (context) {
+                                          return Homepage();
+                                        }));
+                                      });
+                                    } on FirebaseAuthException catch (e) {
+                                      print(e
+                                          .code); // show error info. topic to dev.
+                                      print(e
+                                          .message); // show how to do with error todev.
+                                      Fluttertoast.showToast(
+                                          // show error box to user
+                                          msg: e.message!,
+                                          gravity: ToastGravity.CENTER);
+                                    }
+                                  }
+                                },
+                              ),
+                            ],
                           ),
                         ),
-                        ElevatedButton(
-                            child: Icon(Icons.arrow_circle_left_rounded),
-                            onPressed: () {
-                              Navigator.pushReplacement(context,
-                                  MaterialPageRoute(builder: (context) {
-                                return MyApp();
-                              }));
-                            })
                       ],
                     ),
                   ),
